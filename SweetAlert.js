@@ -7,10 +7,12 @@
 
 'use strict';
 
-angular.module('19degrees.ngSweetAlert2', [])
+angular.module('wisboo.ngSweetAlert2', [])
 .factory('sweetAlert', [ '$timeout', '$window', function ( $timeout, $window ) {
 
 	var swal = $window.swal;
+
+  const globalAttrs = {};
 	
 	var self = function ( arg1, arg2, arg3 ) {
 		$timeout(function() {
@@ -29,6 +31,9 @@ angular.module('19degrees.ngSweetAlert2', [])
 	//public methods
 	var props = {
 		swal: swal,
+    setGlobals: function(params) {
+      angular.extend(globalAttrs, params);
+    },
 		adv: function( object ) {
 			$timeout(function() {
 				swal( object );
@@ -36,32 +41,27 @@ angular.module('19degrees.ngSweetAlert2', [])
 		},
 		timed: function( title, message, type, time ) {
 			$timeout(function() {
-				swal( {
-					title: title,
-					text: message,
-					type: type,
-					timer: time
-				} );
+				swal( angular.extend( {}, globalAttrs, { title: title, message: message, type: type, time: time }) );
 			});
 		},
 		success: function(title, message) {
 			$timeout(function(){
-				swal( title, message, 'success' );
+				swal( angular.extend( {}, globalAttrs, { title: title, message: message, type: 'success' }) );
 			});
 		},
 		error: function(title, message) {
 			$timeout(function(){
-				swal( title, message, 'error' );
+				swal( angular.extend( {}, globalAttrs, { title: title, message: message, type: 'error' }) );
 			});
 		},
 		warning: function(title, message) {
 			$timeout(function(){
-				swal( title, message, 'warning' );
+				swal( angular.extend( {}, globalAttrs, { title: title, message: message, type: 'warning' }) );
 			});
 		},
 		info: function(title, message) {	
 			$timeout(function(){
-				swal( title, message, 'info' );
+				swal( angular.extend( {}, globalAttrs, { title: title, message: message, type: 'info' }) );
 			});
 		}
 	};
