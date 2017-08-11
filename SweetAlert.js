@@ -31,8 +31,8 @@ angular.module('wisboo.ngSweetAlert2', [])
 	//public methods
 	var props = {
 		swal: swal,
-    setGlobals: function(params) {
-      angular.extend(globalAttrs, params);
+    setGlobals: function(customParams) {
+      swal.setDefaults(customParams)
     },
 		adv: function( object ) {
 			$timeout(function() {
@@ -41,27 +41,32 @@ angular.module('wisboo.ngSweetAlert2', [])
 		},
 		timed: function( title, message, type, time ) {
 			$timeout(function() {
-				swal( angular.extend( {}, globalAttrs, { title: title, message: message, type: type, time: time }) );
+				swal( {
+                title: title,
+                message: message,
+                type: type,
+                time: time
+        } );
 			});
 		},
 		success: function(title, message) {
 			$timeout(function(){
-				swal( angular.extend( {}, globalAttrs, { title: title, message: message, type: 'success' }) );
+				swal(title, message, 'success');
 			});
 		},
 		error: function(title, message) {
 			$timeout(function(){
-				swal( angular.extend( {}, globalAttrs, { title: title, message: message, type: 'error' }) );
+				swal(title, message, 'error');
 			});
 		},
 		warning: function(title, message) {
 			$timeout(function(){
-				swal( angular.extend( {}, globalAttrs, { title: title, message: message, type: 'warning' }) );
+				swal(title, message, 'warning');
 			});
 		},
 		info: function(title, message) {	
 			$timeout(function(){
-				swal( angular.extend( {}, globalAttrs, { title: title, message: message, type: 'info' }) );
+				swal(title, message, 'info');
 			});
 		}
 	};
