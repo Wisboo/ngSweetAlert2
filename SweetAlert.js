@@ -12,7 +12,7 @@ angular.module('wisboo.ngSweetAlert2', [])
 
 	var swal = $window.swal;
 
-  const globalAttrs = {};
+  var globalAttrs = {};
 	
 	var self = function ( arg1, arg2, arg3 ) {
 		$timeout(function() {
