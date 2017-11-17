@@ -15,7 +15,8 @@ angular.module('wisboo.ngSweetAlert2', [])
 	question: 'http://2.cdn.wisboo.com/static_images/question.svg',
 	info: 'http://2.cdn.wisboo.com/static_images/info.svg'
 })
-.factory('sweetAlert', [ '$timeout', '$window', 'icons', function ( $timeout, $window, icons ) {
+.factory('sweetAlert', [ '$timeout', '$window', 'icons', '$q',
+function ( $timeout, $window, icons, $q ) {
 
 	var swal = $window.swal;
 
@@ -42,9 +43,16 @@ angular.module('wisboo.ngSweetAlert2', [])
       swal.setDefaults(customParams)
     },
 		adv: function( object ) {
-			$timeout(function() {
-				swal( object );
+			return $q(function (resolve, reject) {
+				swal( object ).then(function (result) {
+					if (result.value || !result.dismiss) {
+						resolve(true, result.value);
+					} else {
+						resolve(false);
+					}
+				});
 			});
+
 		},
 		timed: function( title, message, type, time ) {
 			$timeout(function() {
@@ -58,23 +66,23 @@ angular.module('wisboo.ngSweetAlert2', [])
 		},
 		success: function(props) {
 			angular.extend(props, { imageUrl: icons.success });
-			return swal(props);
+			return this.adv(props);
 		},
 		error: function(props) {
 			angular.extend(props, { imageUrl: icons.error });
-			return swal(props);
+			return this.adv(props);
 		},
 		warning: function(props) {
 			angular.extend(props, { imageUrl: icons.warning });
-			return swal(props);
+			return this.adv(props);
 		},
 		info: function(props) {
 			angular.extend(props, { imageUrl: icons.info });
-			return swal(props);
+			return this.adv(props);
 		},
 		question: function(props) {
 			angular.extend(props, { type: 'question', imageUrl: icons.question });
-			return swal(props);
+			return this.adv(props);
 		}
 	};
 
