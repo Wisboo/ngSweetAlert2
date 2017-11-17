@@ -9,7 +9,7 @@
 
 angular.module('wisboo.ngSweetAlert2', [])
 .constant('icons', {
-	success: 'http://2.cdn.wisboo.com/static_images/confirmation.svg',
+	success: 'http://2.cdn.wisboo.com/static_images/confirmacion.svg',
 	warning: 'http://2.cdn.wisboo.com/static_images/alert.svg',
 	error: 'http://2.cdn.wisboo.com/static_images/error.svg',
 	question: 'http://2.cdn.wisboo.com/static_images/question.svg',
@@ -81,7 +81,7 @@ function ( $timeout, $window, icons, $q ) {
 			return this.adv(props);
 		},
 		question: function(props) {
-			angular.extend(props, { type: 'question', imageUrl: icons.question });
+			angular.extend(props, { imageUrl: icons.question });
 			return this.adv(props);
 		}
 	};
