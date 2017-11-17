@@ -8,12 +8,19 @@
 'use strict';
 
 angular.module('wisboo.ngSweetAlert2', [])
-.factory('sweetAlert', [ '$timeout', '$window', function ( $timeout, $window ) {
+.constant('icons', {
+	success: 'http://2.cdn.wisboo.com/static_images/confirmation.svg',
+	warning: 'http://2.cdn.wisboo.com/static_images/alert.svg',
+	error: 'http://2.cdn.wisboo.com/static_images/error.svg',
+	question: 'http://2.cdn.wisboo.com/static_images/question.svg',
+	info: 'http://2.cdn.wisboo.com/static_images/info.svg'
+})
+.factory('sweetAlert', [ '$timeout', '$window', 'icons', function ( $timeout, $window, icons ) {
 
 	var swal = $window.swal;
 
   var globalAttrs = {};
-	
+
 	var self = function ( arg1, arg2, arg3 ) {
 		$timeout(function() {
 			if( typeof(arg2) === 'function' ) {
@@ -49,30 +56,29 @@ angular.module('wisboo.ngSweetAlert2', [])
         } );
 			});
 		},
-		success: function(title, message) {
-			$timeout(function(){
-				swal(title, message, 'success');
-			});
+		success: function(props) {
+			angular.extend(props, { imageUrl: icons.success });
+			return swal(props);
 		},
-		error: function(title, message) {
-			$timeout(function(){
-				swal(title, message, 'error');
-			});
+		error: function(props) {
+			angular.extend(props, { imageUrl: icons.error });
+			return swal(props);
 		},
-		warning: function(title, message) {
-			$timeout(function(){
-				swal(title, message, 'warning');
-			});
+		warning: function(props) {
+			angular.extend(props, { imageUrl: icons.warning });
+			return swal(props);
 		},
-		info: function(title, message) {	
-			$timeout(function(){
-				swal(title, message, 'info');
-			});
+		info: function(props) {
+			angular.extend(props, { imageUrl: icons.info });
+			return swal(props);
+		},
+		question: function(props) {
+			angular.extend(props, { type: 'question', imageUrl: icons.question });
+			return swal(props);
 		}
 	};
-	
+
 	angular.extend(self, props);
-	
+
 	return self;
 }]);
-
