@@ -9,11 +9,11 @@
 
 angular.module('wisboo.ngSweetAlert2', [])
 .constant('icons', {
-	success: 'http://2.cdn.wisboo.com/static_images/confirmacion.svg',
-	warning: 'http://2.cdn.wisboo.com/static_images/alert.svg',
-	error: 'http://2.cdn.wisboo.com/static_images/error.svg',
-	question: 'http://2.cdn.wisboo.com/static_images/question.svg',
-	info: 'http://2.cdn.wisboo.com/static_images/info.svg'
+	success: 'https://2.cdn.wisboo.com/static_images/confirmacion.svg',
+	warning: 'https://2.cdn.wisboo.com/static_images/alert.svg',
+	error: 'https://2.cdn.wisboo.com/static_images/error.svg',
+	question: 'https://2.cdn.wisboo.com/static_images/question.svg',
+	info: 'https://2.cdn.wisboo.com/static_images/info.svg'
 })
 .factory('sweetAlert', [ '$timeout', '$window', 'icons', '$q',
 function ( $timeout, $window, icons, $q ) {
