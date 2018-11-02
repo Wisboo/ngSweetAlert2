@@ -1,0 +1,23 @@
+{
+  "name": "ng-sweet-alert2",
+  "version": "1.0.0",
+  "description": "Angular Wrapper for sweetAlert2, customized by Wisboo",
+  "main": "SweetAlert.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wisboo/ngSweetAlert2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wisboo/ngSweetAlert2/issues"
+  },
+  "homepage": "https://github.com/Wisboo/ngSweetAlert2#readme",
+  "dependencies": {
+    "angular":"~1.2.0",
+		"sweetalert2":">=0.1.9"
+  }
+}
