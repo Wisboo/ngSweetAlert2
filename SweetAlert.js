@@ -15,10 +15,10 @@ angular.module('wisboo.ngSweetAlert2', [])
 	question: 'https://2.cdn.wisboo.com/static_images/question.svg',
 	info: 'https://2.cdn.wisboo.com/static_images/info.svg'
 })
-.factory('sweetAlert', [ '$timeout', '$window', 'icons', '$q',
-function ( $timeout, $window, icons, $q ) {
+.factory('sweetAlert', [ '$timeout', 'icons', '$q',
+function ( $timeout, icons, $q ) {
 
-	var swal = $window.swal;
+	var swal = window.swal;
 
   var globalAttrs = {};
 
