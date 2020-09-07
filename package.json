@@ -1,6 +1,6 @@
 {
   "name": "ng-sweet-alert2",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "Angular Wrapper for sweetAlert2, customized by Wisboo",
   "main": "SweetAlert.js",
   "scripts": {
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Wisboo/ngSweetAlert2#readme",
   "dependencies": {
-    "angular":"~1.2.0",
-		"sweetalert2":">=0.1.9"
+    "angular": "~1.8.0",
+    "sweetalert2": ">=9.17.2"
   }
 }
