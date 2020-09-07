@@ -1,50 +1,22 @@
-/**
-@fileOverview
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
-@toc
+export const ngSweetAlert = angular.module('wisboo.ngSweetAlert2', [])
+	.constant('icons', {
+		success: 'https://2.cdn.wisboo.com/static_images/confirmacion.svg',
+		warning: 'https://2.cdn.wisboo.com/static_images/alert.svg',
+		error: 'https://2.cdn.wisboo.com/static_images/error.svg',
+		question: 'https://2.cdn.wisboo.com/static_images/question.svg',
+		info: 'https://2.cdn.wisboo.com/static_images/info.svg'
+	})
+	.service('sweetAlert', ['$timeout', 'icons', '$q', function ($timeout, icons, $q) {
+		//public methods
+		this.setGlobals = (customParams) => {
+      Swal.setDefaults(customParams);
+    };
 
-*/
-
-'use strict';
-
-angular.module('wisboo.ngSweetAlert2', [])
-.constant('icons', {
-	success: 'https://2.cdn.wisboo.com/static_images/confirmacion.svg',
-	warning: 'https://2.cdn.wisboo.com/static_images/alert.svg',
-	error: 'https://2.cdn.wisboo.com/static_images/error.svg',
-	question: 'https://2.cdn.wisboo.com/static_images/question.svg',
-	info: 'https://2.cdn.wisboo.com/static_images/info.svg'
-})
-.factory('sweetAlert', [ '$timeout', 'icons', '$q',
-function ( $timeout, icons, $q ) {
-
-	var swal = window.swal;
-
-  var globalAttrs = {};
-
-	var self = function ( arg1, arg2, arg3 ) {
-		$timeout(function() {
-			if( typeof(arg2) === 'function' ) {
-				swal(arg1, function(isConfirm) {
-					$timeout( function() {
-						arg2(isConfirm);
-					});
-				}, arg3 );
-			} else {
-				swal( arg1, arg2, arg3 );
-			}
-		});
-	};
-
-	//public methods
-	var props = {
-		swal: swal,
-    setGlobals: function(customParams) {
-      swal.setDefaults(customParams)
-    },
-		adv: function( object ) {
+		this.adv = (object) => {
 			return $q(function (resolve, reject) {
-				swal( object ).then(function (result) {
+				Swal.fire(object).then(function (result) {
 					if (result.value || !result.dismiss) {
 						resolve(true, result.value);
 					} else {
@@ -52,41 +24,41 @@ function ( $timeout, icons, $q ) {
 					}
 				});
 			});
+		};
 
-		},
-		timed: function( title, message, type, time ) {
+		this.timed = (title, message, type, time) => {
 			$timeout(function() {
-				swal( {
-                title: title,
-                message: message,
-                type: type,
-                time: time
-        } );
+				Swal.fire({
+          title: title,
+          message: message,
+          type: type,
+          time: time
+        });
 			});
-		},
-		success: function(props) {
+		};
+
+		this.success = (props) => {
 			angular.extend(props, { imageUrl: icons.success });
 			return this.adv(props);
-		},
-		error: function(props) {
+		};
+
+		this.error = (props) => {
 			angular.extend(props, { imageUrl: icons.error });
 			return this.adv(props);
-		},
-		warning: function(props) {
+		};
+
+		this.warning = (props) => {
 			angular.extend(props, { imageUrl: icons.warning });
 			return this.adv(props);
-		},
-		info: function(props) {
+		};
+
+		this.info = (props) => {
 			angular.extend(props, { imageUrl: icons.info });
 			return this.adv(props);
-		},
-		question: function(props) {
+		};
+
+		this.question = (props) => {
 			angular.extend(props, { imageUrl: icons.question });
 			return this.adv(props);
-		}
-	};
-
-	angular.extend(self, props);
-
-	return self;
-}]);
+		};
+	}]);
