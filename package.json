@@ -4,7 +4,7 @@
   "description": "Angular Wrapper for sweetAlert2, customized by Wisboo",
   "main": "SweetAlert.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "release": "rollup -c rollup.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,21 @@
   "dependencies": {
     "angular": "~1.8.0",
     "sweetalert2": ">=9.17.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-external-helpers": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-async-to-generator": "^7.5.0",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
+    "@babel/runtime": "^7.6.0",
+    "rollup": "^1.21.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-delete": "^1.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
   }
 }
