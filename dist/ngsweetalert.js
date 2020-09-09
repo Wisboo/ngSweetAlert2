@@ -16,13 +16,15 @@ var ngSweetAlert = angular.module('wisboo.ngSweetAlert2', []).constant('icons', 
   var _this = this;
 
   //public methods
+  var customSwal;
+
   this.setGlobals = function (customParams) {
-    Swal.setDefaults(customParams);
+    customSwal = Swal.mixin(customParams);
   };
 
   this.adv = function (object) {
     return $q(function (resolve, reject) {
-      Swal.fire(object).then(function (result) {
+      customSwal.fire(object).then(function (result) {
         if (result.value || !result.dismiss) {
           resolve(true, result.value);
         } else {
@@ -32,9 +34,13 @@ var ngSweetAlert = angular.module('wisboo.ngSweetAlert2', []).constant('icons', 
     });
   };
 
+  this.close = function () {
+    customSwal.close();
+  };
+
   this.timed = function (title, message, type, time) {
     $timeout(function () {
-      Swal.fire({
+      customSwal.fire({
         title: title,
         message: message,
         type: type,
