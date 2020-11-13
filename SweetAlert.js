@@ -5,7 +5,7 @@ export const ngSweetAlert = angular.module('wisboo.ngSweetAlert2', [])
 		success: 'https://2.cdn.wisboo.com/images/sa_done.svg',
 		warning: 'https://2.cdn.wisboo.com/images/sa_alert.svg',
 		error: 'https://2.cdn.wisboo.com/images/sa_error.svg',
-		question: 'hhttps://2.cdn.wisboo.com/images/sa_question.svg',
+		question: 'https://2.cdn.wisboo.com/images/sa_question.svg',
 		info: 'https://2.cdn.wisboo.com/images/sa_info.svg'
 	})
 	
