@@ -10,7 +10,7 @@ var ngSweetAlert = angular.module('wisboo.ngSweetAlert2', []).constant('icons', 
   success: 'https://2.cdn.wisboo.com/images/sa_done.svg',
   warning: 'https://2.cdn.wisboo.com/images/sa_alert.svg',
   error: 'https://2.cdn.wisboo.com/images/sa_error.svg',
-  question: 'https://2.cdn.wisboo.com/static_images/question.svg',
+  question: 'https://2.cdn.wisboo.com/images/sa_question.svg',
   info: 'https://2.cdn.wisboo.com/images/sa_info.svg'
 }).service('sweetAlert', ['$timeout', 'icons', '$q', function ($timeout, icons, $q) {
   var _this = this;
