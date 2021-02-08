@@ -12,17 +12,29 @@ export const ngSweetAlert = angular.module('wisboo.ngSweetAlert2', [])
 	.service('sweetAlert', ['$timeout', 'icons', '$q', function ($timeout, icons, $q) {
 		//public methods
 		let customSwal;
+		
+		const generateResultObject = (result) => ({
+			...result,
+			isCancelled: result.dismiss === 'cancel',
+			isBackdropped: result.dismiss === 'backdrop',
+			isClosed: result.dismiss === 'close'
+		});
+
 		this.setGlobals = (customParams) => {
       customSwal = Swal.mixin(customParams);
-    };
+		};
 
-		this.adv = (object) => {
+		this.adv = ({ returnResultObject = false, ...object }) => {
 			return $q(function (resolve, reject) {
 				customSwal.fire(object).then(function (result) {
-					if (result.value || !result.dismiss) {
-						resolve(true, result.value);
+					if (returnResultObject) {
+						resolve(generateResultObject(result));
 					} else {
-						resolve(false);
+						if (result.value || !result.dismiss) {
+							resolve(true, result.value);
+						} else {
+							resolve(false);
+						}
 					}
 				});
 			});
